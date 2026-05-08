@@ -20,6 +20,11 @@ public class OrderController {
 
     private final OrderService orderService;
 
+    @GetMapping("/test")
+    public ResponseEntity<String> testOrder(){
+        return ResponseEntity.ok("Hello from order Service, !!");
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<OrderRequestDto> getOrderById(@PathVariable Long id){
         log.info("Fetching order with ID:{} via controller",id);
