@@ -23,7 +23,7 @@ spring:
 
 server:
   servlet:
-    context-path: /api/v1
+    context-path: /orders
   port: 9020
 
 

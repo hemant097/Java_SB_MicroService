@@ -29,7 +29,7 @@ public class ProductController {
 
         return restClient
                 .get()
-                .uri(orderService.getUri()+"/api/v1/orders/test")
+                .uri(orderService.getUri()+"/orders/core/test")
                 .retrieve()
                 .toEntity(String.class);
     }
