@@ -11,10 +11,10 @@ spring:
             - id: order-service
               uri: lb://ORDER-SERVICE
               predicates:
-                - Path=/api/v1/order/** #now we've to use the /api/v1 while requesting
+                - Path=/api/v1/orders/** #now we've to use the /api/v1 while requesting
               filters:
                 - StripPrefix=2 #removes the api/v1 from the path, and request is then handled by order-service
-                - RedirectTo=302, http://google.com #redirects to this url
+#                - RedirectTo=302, http://google.com #redirects to this url
 
             - id: inventory-service
               uri: lb://INVENTORY-SERVICE
