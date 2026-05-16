@@ -35,7 +35,7 @@ public class ProductService {
 
     @Transactional
     public Double reduceStocks(OrderRequestDto orderRequest){
-        log.info("Reducing the inventory stocks");
+        log.info("Reducing the inventory stocks for :{} items",orderRequest.items().size());
         double totalPrice = 0.0;
         for(OrderRequestItemDto item: orderRequest.items()){
             Long productId = item.productId();

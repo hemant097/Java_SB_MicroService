@@ -20,8 +20,8 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
         </processorPath>
         <module name="order-service.test" />
-        <module name="order-service.main" />
         <module name="inventory-service.test" />
+        <module name="order-service.main" />
         <module name="inventory-service.main" />
       </profile>
     </annotationProcessing>

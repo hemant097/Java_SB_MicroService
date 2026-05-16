@@ -7,6 +7,7 @@ import com.example.eCommerce.order_service.entity.OrderItem;
 import com.example.eCommerce.order_service.entity.OrderStatus;
 import com.example.eCommerce.order_service.mapper.OrderMapper;
 import com.example.eCommerce.order_service.repository.OrderRepository;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,9 @@ public class OrderService {
         return orderMapper.toOrderRequestDto(order);
     }
 
+    @Retry(name = "inventoryRetry", fallbackMethod ="createOrderFallback" )
     public OrderRequestDto createOrder(OrderRequestDto orderRequest){
+        log.info("creating orders, and reducing inventory stock using inventory_OpenFeign_client");
         Double totalPrice = inventoryOpenFeignClient.reduceStocks(orderRequest);
 
         Order order = orderMapper.toOrder(orderRequest);
@@ -50,4 +53,11 @@ public class OrderService {
         Order savedOrder = orderRepo.save(order);
         return orderMapper.toOrderRequestDto(savedOrder);
     }
+
+    public OrderRequestDto  createOrderFallback(OrderRequestDto orderRequestDto, Throwable throwable){
+        log.error("Fallback occurred due to: {}",throwable.getMessage());
+        return new OrderRequestDto();
+    }
+
+
 }
