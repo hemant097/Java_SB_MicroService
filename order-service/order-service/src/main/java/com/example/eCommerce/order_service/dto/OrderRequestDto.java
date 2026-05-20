@@ -13,6 +13,6 @@ public record OrderRequestDto(
         BigDecimal totalPrice
 ) {
     public OrderRequestDto() {
-        this(null,List.of(),BigDecimal.ZERO);
+        this(null,null,null);
     }
 }
