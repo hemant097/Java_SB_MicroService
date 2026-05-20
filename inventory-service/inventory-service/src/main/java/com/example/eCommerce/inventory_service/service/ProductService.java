@@ -1,8 +1,6 @@
 package com.example.eCommerce.inventory_service.service;
 
-import com.example.eCommerce.inventory_service.dto.OrderRequestDto;
-import com.example.eCommerce.inventory_service.dto.OrderRequestItemDto;
-import com.example.eCommerce.inventory_service.dto.ProductDto;
+import com.example.eCommerce.inventory_service.dto.*;
 import com.example.eCommerce.inventory_service.entity.Product;
 import com.example.eCommerce.inventory_service.mapper.ProductMapper;
 import com.example.eCommerce.inventory_service.repo.ProductRepository;
@@ -41,8 +39,7 @@ public class ProductService {
             Long productId = item.productId();
             Integer quantity = item.quantity();
 
-            Product product = productRepo.findById(productId)
-                    .orElseThrow(()-> new RuntimeException("no product found with id: "+productId));
+            Product product = checkProductExists(productId);
 
             if(product.getStock()<quantity)
                 throw new RuntimeException("request cannot be fulfilled , as less stocks");
@@ -53,5 +50,28 @@ public class ProductService {
         }
 
         return totalPrice;
+    }
+
+    @Transactional
+    public Long increaseStocks(CancelRequestDto cancelRequest){
+        log.info("Cancelling the order with orderId:{} and restocking the inventory",cancelRequest.orderId());
+        long itemsRestocked = 0;
+        for(OrderRequestItemDto item: cancelRequest.items()){
+            Long productId = item.productId();
+            Integer quantity = item.quantity();
+
+            Product product = checkProductExists(productId);
+
+            product.setStock(product.getStock()+quantity);
+            productRepo.save(product);
+            itemsRestocked+=quantity;
+
+        }
+        return itemsRestocked;
+    }
+
+    Product checkProductExists(Long productId){
+        return productRepo.findById(productId)
+                .orElseThrow(()-> new RuntimeException("no product found with id: "+productId));
     }
 }

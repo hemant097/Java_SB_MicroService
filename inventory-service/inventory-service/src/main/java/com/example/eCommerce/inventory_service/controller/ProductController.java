@@ -1,6 +1,7 @@
 package com.example.eCommerce.inventory_service.controller;
 
 import com.example.eCommerce.inventory_service.clients.OrdersFeignClient;
+import com.example.eCommerce.inventory_service.dto.CancelRequestDto;
 import com.example.eCommerce.inventory_service.dto.OrderRequestDto;
 import com.example.eCommerce.inventory_service.dto.ProductDto;
 import com.example.eCommerce.inventory_service.service.ProductService;
@@ -54,5 +55,10 @@ public class ProductController {
     @PutMapping("reduce-stocks")
     public ResponseEntity<Double> reduceStocks(@RequestBody OrderRequestDto orderRequest){
         return ResponseEntity.ok(productService.reduceStocks(orderRequest));
+    }
+
+    @PutMapping("increase-stocks")
+    public ResponseEntity<Long> increaseStocks(@RequestBody CancelRequestDto cancelRequest){
+        return ResponseEntity.ok(productService.increaseStocks(cancelRequest));
     }
 }
