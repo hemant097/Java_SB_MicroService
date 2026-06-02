@@ -15,6 +15,7 @@ spring:
               filters:
                 - StripPrefix=2 #removes the api/v1 from the path, and request is then handled by order-service
 #                - RedirectTo=302, http://google.com #redirects to this url
+                - name: OrdersLoggingFilter
 
             - id: inventory-service
               uri: lb://INVENTORY-SERVICE
