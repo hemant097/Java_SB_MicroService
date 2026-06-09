@@ -21,8 +21,8 @@ public class OrderController {
 
 
     @GetMapping("/test")
-    public ResponseEntity<String> testOrder(){
-        return ResponseEntity.ok("Hello from order Service, !!");
+    public ResponseEntity<String> testOrder(@RequestHeader(name = "X-User-Id") String userId){
+        return ResponseEntity.ok("Hello from order Service, !!, the user-id is: "+userId);
     }
 
     @PostMapping("create-order")
