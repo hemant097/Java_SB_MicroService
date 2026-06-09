@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="api-gateway" />
+        <module name="config-server" />
         <module name="discovery-service" />
       </profile>
       <profile name="Annotation profile for order-service" enabled="true">
@@ -20,8 +21,8 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
         </processorPath>
         <module name="order-service.test" />
-        <module name="inventory-service.test" />
         <module name="order-service.main" />
+        <module name="inventory-service.test" />
         <module name="inventory-service.main" />
       </profile>
     </annotationProcessing>
@@ -29,6 +30,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-gateway" options="-parameters" />
+      <module name="config-server" options="-parameters" />
       <module name="discovery-service" options="-parameters" />
       <module name="inventory-service" options="-parameters" />
       <module name="inventory-service.main" options="-parameters" />
