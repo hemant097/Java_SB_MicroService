@@ -45,6 +45,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-server</artifactId>
         </dependency>
+
     </dependencies>
 	<dependencyManagement>
 		<dependencies>

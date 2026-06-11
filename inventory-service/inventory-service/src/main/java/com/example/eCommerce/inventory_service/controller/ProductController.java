@@ -7,6 +7,7 @@ import com.example.eCommerce.inventory_service.dto.ProductDto;
 import com.example.eCommerce.inventory_service.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,13 @@ public class ProductController {
     private final DiscoveryClient discoveryClient;
     private final OrdersFeignClient ordersFeignClient;
 
+    @Value("${my.variable}")
+    private String myVariable;
+
+    @GetMapping("/devtest")
+    public String testMethod(){
+        return "hello from inventory service, the variable is "+myVariable;
+    }
     @GetMapping("/fetchOrders")
     public ResponseEntity<String> fetchOrdersFromOrderService(@RequestHeader("x-custom-header") String customHeader){
         log.info("Custom header value:{}",customHeader);
