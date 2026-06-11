@@ -1,6 +1,7 @@
 package com.example.eCommerce.inventory_service.controller;
 
 import com.example.eCommerce.inventory_service.clients.OrdersFeignClient;
+import com.example.eCommerce.inventory_service.config.FeatureConfig;
 import com.example.eCommerce.inventory_service.dto.CancelRequestDto;
 import com.example.eCommerce.inventory_service.dto.OrderRequestDto;
 import com.example.eCommerce.inventory_service.dto.ProductDto;
@@ -26,13 +27,15 @@ public class ProductController {
     private final RestClient restClient;
     private final DiscoveryClient discoveryClient;
     private final OrdersFeignClient ordersFeignClient;
+    private final FeatureConfig featureConfig;
 
-    @Value("${my.variable}")
-    private String myVariable;
 
     @GetMapping("/devtest")
     public String testMethod(){
-        return "hello from inventory service, the variable is "+myVariable;
+        if (featureConfig.isUserTrackingEnabled())
+            return "Woohoo from inventory service, the variable is "+featureConfig.getMyVariable();
+        else
+            return "So sad, from inventory service, the variable is "+featureConfig.getMyVariable();
     }
     @GetMapping("/fetchOrders")
     public ResponseEntity<String> fetchOrdersFromOrderService(@RequestHeader("x-custom-header") String customHeader){
