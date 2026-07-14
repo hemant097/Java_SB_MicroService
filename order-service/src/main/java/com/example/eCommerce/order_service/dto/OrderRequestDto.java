@@ -1,18 +1,17 @@
 package com.example.eCommerce.order_service.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import com.example.eCommerce.order_service.entity.OrderStatus;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 
 public record OrderRequestDto(
         Long id,
         List<OrderRequestItemDto> items,
-        BigDecimal totalPrice
+        Double totalPrice,
+        OrderStatus orderStatus
 ) {
     public OrderRequestDto() {
-        this(null,null,null);
+        this(null,null,null,null);
     }
 }

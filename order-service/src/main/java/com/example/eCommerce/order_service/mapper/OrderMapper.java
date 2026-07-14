@@ -1,7 +1,9 @@
 package com.example.eCommerce.order_service.mapper;
 
 import com.example.eCommerce.order_service.dto.OrderRequestDto;
+import com.example.eCommerce.order_service.dto.OrderRequestItemDto;
 import com.example.eCommerce.order_service.entity.Order;
+import com.example.eCommerce.order_service.entity.OrderItem;
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -14,4 +16,6 @@ public interface OrderMapper {
     List<OrderRequestDto> toOrderDtoList(List<Order> orders);
 
     Order toOrder(OrderRequestDto orderRequestDto);
+
+    List<OrderRequestItemDto> toOrderRequestItemDtoList(List<OrderItem> items);
 }

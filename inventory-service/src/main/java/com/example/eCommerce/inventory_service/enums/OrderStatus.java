@@ -1,4 +1,4 @@
-package com.example.eCommerce.order_service.entity;
+package com.example.eCommerce.inventory_service.enums;
 
 public enum OrderStatus {
     CONFIRMED,
@@ -6,5 +6,5 @@ public enum OrderStatus {
     PENDING,
     SHIPPED,
     DELIVERED,
-    OUT_OF_STOCK,
+    OUT_OF_STOCK
 }

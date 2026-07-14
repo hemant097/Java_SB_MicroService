@@ -18,7 +18,6 @@ public class ProductService {
     private final ProductRepository productRepo;
     private final ProductMapper productMapper;
 
-
     public List<ProductDto> getAllProducts(){
         log.info("Fetching all inventory items");
         return productMapper.toProductDtoList(productRepo.findAll());
@@ -46,9 +45,8 @@ public class ProductService {
 
             product.setStock(product.getStock()-quantity);
             productRepo.save(product);
-            totalPrice+=product.getPrice();
+            totalPrice+= product.getPrice() * quantity;
         }
-
         return totalPrice;
     }
 

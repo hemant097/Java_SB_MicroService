@@ -1,10 +1,10 @@
 spring:
   application:
-    name: order-service
-
+    name : inventory-service
   config:
-    import: "configserver:http://localhost:8888"
-
+    import : "configserver:http://localhost:8888"
+  profiles:
+    active : dev
   kafka:
     bootstrap-servers: localhost:9092
     producer:
@@ -19,6 +19,7 @@ spring:
           trusted.packages: com.example.eCommerce.*
 
 
-kafka.topic:
-  order-status-updated-topic: order-status-updated-topic
-  order-created-topic: order-created-topic
+kafka:
+  topic:
+    order-status-updated-topic : order-status-updated-topic
+    order-created-topic :  order-created-topic

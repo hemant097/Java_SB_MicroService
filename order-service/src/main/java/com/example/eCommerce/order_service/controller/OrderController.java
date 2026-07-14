@@ -2,6 +2,7 @@ package com.example.eCommerce.order_service.controller;
 
 import com.example.eCommerce.order_service.dto.CancelRequestDto;
 import com.example.eCommerce.order_service.dto.CancelResponseDto;
+import com.example.eCommerce.order_service.dto.InitialOrderResponse;
 import com.example.eCommerce.order_service.dto.OrderRequestDto;
 import com.example.eCommerce.order_service.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,7 @@ public class OrderController {
     }
 
     @PostMapping("create-order")
-    public ResponseEntity<OrderRequestDto> createOrder(@RequestBody OrderRequestDto orderRequest){
+    public ResponseEntity<InitialOrderResponse> createOrder(@RequestBody OrderRequestDto orderRequest){
         return ResponseEntity.ok(orderService.createOrder(orderRequest));
     }
 
