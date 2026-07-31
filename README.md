@@ -5,3 +5,4 @@
 * Using Resilience4j retry, rate limited and circuit breaker
 * Using centralized config server using github
 * Using tracing using zipkin and micrometer
+* Added Kafka to send events across order-service and inventory-service, such as OrderRequestEvent and OrderStatusUpdatedEvent
