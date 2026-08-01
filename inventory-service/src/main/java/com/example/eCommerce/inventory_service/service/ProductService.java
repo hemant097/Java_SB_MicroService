@@ -53,7 +53,7 @@ public class ProductService {
     }
 
     @Transactional
-    public Long increaseStocks(CancelRequestDto cancelRequest){
+    public Long inventoryReturnWhenOrderCancelled(CancelRequestDto cancelRequest){
         log.info("Cancelling the order with orderId:{} and restocking the inventory",cancelRequest.orderId());
         long itemsRestocked = 0;
         for(OrderRequestItemDto item: cancelRequest.items()){
