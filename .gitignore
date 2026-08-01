@@ -33,3 +33,4 @@ build/
 ### VS Code ###
 .vscode/
 .DS_Store
+/k8s/config-server.yaml
