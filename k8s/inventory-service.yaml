@@ -29,9 +29,11 @@ spec:
             - name: DB_PASSWORD
               value: "root"
             - name: DB_SERVICE
-              value: "order-db-service"
+              value: "inventory-db-service"
             - name: CONFIG_SERVER_URL
               value: "http://config-server:8888"
+            - name: DB_NAME
+              value: kubeInventory
           ports:
             - containerPort: 9010
 

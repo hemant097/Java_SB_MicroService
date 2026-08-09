@@ -32,6 +32,8 @@ spec:
               value: "order-db-service"
             - name: CONFIG_SERVER_URL
               value: "http://config-server:8888"
+            - name: DB_NAME
+              value: kubeOrders
           ports:
             - containerPort: 9020
 
