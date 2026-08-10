@@ -23,6 +23,13 @@ spec:
             cpu: "50m"
         ports:
         - containerPort: 9411
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 9411
+          initialDelaySeconds: 300
+          periodSeconds: 20
+          timeoutSeconds: 20
 
 
 ---

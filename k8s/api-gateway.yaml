@@ -28,6 +28,13 @@ spec:
               value: "http://config-server:8888"
           ports:
             - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080  #should be same as containerPort
+            initialDelaySeconds: 300
+            periodSeconds: 20
+            timeoutSeconds: 20
 
 
 ---
@@ -37,7 +44,7 @@ kind: Service
 metadata:
   name: api-gateway
 spec:
-  type: LoadBalancer
+  type: ClusterIP #default
   selector:
     app: api-gateway
   ports:

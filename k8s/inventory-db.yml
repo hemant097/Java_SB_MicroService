@@ -29,7 +29,10 @@ spec:
           - name: POSTGRES_PASSWORD
             value: "root"
           - name: PGDATA
-            value: /var/lib/postgresql/data/pgdata
+            valueFrom:
+              configMapKeyRef:
+                name: my-config
+                key: PG_DATA
           - name: POSTGRES_DB
             value: kubeInventory
         ports:

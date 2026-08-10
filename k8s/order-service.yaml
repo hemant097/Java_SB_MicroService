@@ -29,7 +29,10 @@ spec:
             - name: DB_PASSWORD
               value: "root"
             - name: DB_SERVICE
-              value: "order-db-service"
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: ORDER_DB_SERVICE
             - name: CONFIG_SERVER_URL
               value: "http://config-server:8888"
             - name: DB_NAME
