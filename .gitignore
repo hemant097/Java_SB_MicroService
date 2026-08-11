@@ -35,3 +35,4 @@ build/
 .DS_Store
 /k8s/config-server.yaml
 /k8s/my-secret.yaml
+/gkeRoles/*.yaml
