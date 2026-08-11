@@ -15,6 +15,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false #all in-progress jobs are not canceled, when set to false
       matrix:
         service:
           - api-gateway
