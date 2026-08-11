@@ -25,16 +25,25 @@ spec:
             cpu: "100m"
         env:
           - name: POSTGRES_USER
-            value: "user"
+            valueFrom:
+              secretKeyRef:
+                name: my-secret
+                key: DB_USER
           - name: POSTGRES_PASSWORD
-            value: "root"
+            valueFrom:
+              secretKeyRef:
+                name: my-secret
+                key: DB_PASSWORD
           - name: PGDATA
             valueFrom:
               configMapKeyRef:
                 name: my-config
                 key: PG_DATA
           - name: POSTGRES_DB
-            value: kubeOrders
+            valueFrom:
+              secretKeyRef:
+                name: my-secret
+                key: ORDER_DB_NAME
         ports:
         - containerPort: 5432
           name: postgres

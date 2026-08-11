@@ -25,9 +25,15 @@ spec:
             - name: SPRING_PROFILES_ACTIVE
               value: k8s
             - name: DB_USER
-              value: "user"
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: DB_USER
             - name: DB_PASSWORD
-              value: "root"
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: DB_PASSWORD
             - name: DB_SERVICE
               valueFrom:
                 configMapKeyRef:
